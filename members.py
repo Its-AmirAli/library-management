@@ -9,3 +9,4 @@ class Member:
             "member id" : self.member_id,
             "author" : self.name,
         }
+
