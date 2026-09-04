@@ -1,4 +1,5 @@
 from books import *
+from members import *
 
 class Library:
     def __init__(self):
@@ -21,5 +22,28 @@ class Library:
         year = input("year : ")
         book_id = self.id_generate("book")
 
-        book = Book(title, author, year, book_id)
-        self.books.append(book)
+        new_book = Book(title, author, year, book_id)
+        self.books.append(new_book.data)
+
+    def add_member(self):
+        name = input("your name : ")
+        password = input("password : ")
+        membar_id = self.id_generate("member")
+
+        new_member = Member(membar_id, name, password)
+        self.members.append(new_member.data)
+
+    def show_data(self, type):
+        if type == "books":
+            for book in self.books:
+                for key, valu in book.items():
+                    print(f"{key} = {valu}")
+                print("---------------")
+
+        if type == "members":
+            for member in self.members:
+                for key, valu in member.items():
+                    print(f"{key} = {valu}")
+                print("---------------")
+
+

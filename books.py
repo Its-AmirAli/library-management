@@ -5,9 +5,10 @@ class Book:
         self.book_id = book_id
         self.year = year
         self.available = True
-    def to_dict(self):
-        return {
+
+        self.data = {
             "title" : self.title,
             "author" : self.author,
+            "year" : self.year,
             "book_id" : self.book_id
         }
