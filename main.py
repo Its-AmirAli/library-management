@@ -1,4 +1,4 @@
-from library import *
+from library import Library
 
 library_start = Library()
 
@@ -26,11 +26,16 @@ while test > 0:
             print("\tPlease enter a number.")
 
     if user_input == 1:
-        print("\tPlease enter book informations.")
+        print("\n\tPlease enter book informations.")
         library_start.add_book()
-    elif user_input == 2:
-        print("\tPlease enter member informations.")
-        library_start.add_member()
-    test -= 1
 
-    
+    elif user_input == 2:
+        print("\n\tPlease enter member informations.")
+        library_start.add_member()
+
+    elif user_input == 3:
+        print("\n\tThe list of library's Books : \n")
+        library_start.show_data("books")
+
+
+    test -= 1

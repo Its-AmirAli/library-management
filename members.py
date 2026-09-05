@@ -5,8 +5,9 @@ class Member:
         self.password_hash = password_hash
         self.borrowed_books = []
 
-        self.data = {
+    def to_dict(self):
+        return {
             "member id" : self.member_id,
-            "author" : self.name,
+            "name" : self.name,
         }
 
