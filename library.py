@@ -17,33 +17,47 @@ class Library:
             return int("2020" + str(self.next_member_id))
 
     def add_book(self):
-        title = input("tilte : ")
-        author = input("author : ")
-        year = input("year : ")
+        title = input("\ttilte : ")
+        author = input("\tauthor : ")
+        year = input("\tyear : ")
         book_id = self.id_generate("book")
 
-        new_book = Book(title, author, year, book_id)
-        self.books.append(new_book.data)
+        approval = input(f"\t{title} from {author} in {year}. \
+do you want to save this? (y/n)").lower
+
+        if approval in ["y", "yes"]:
+            new_book = Book(title, author, year, book_id)
+            self.books.append(new_book.data)
+            print("\tBook added successfully.")
 
     def add_member(self):
-        name = input("your name : ")
-        password = input("password : ")
-        membar_id = self.id_generate("member")
+        name = input("\tyour name : ")
+        while True:
+            password1 = input("\tpassword : ")
+            password2 = input("\tre-enter password : ")
+            if password1 == password2:
+                password = password1
+                break
+            else:
+                print("\tpassword does not match. try again.")
+        membar_id = self.id_generate("\tmember")
 
         new_member = Member(membar_id, name, password)
         self.members.append(new_member.data)
+
+        print(f"\tmember {name} created successfully.")
 
     def show_data(self, type):
         if type == "books":
             for book in self.books:
                 for key, valu in book.items():
-                    print(f"{key} = {valu}")
-                print("---------------")
+                    print(f"\t{key} = {valu}")
+                print("\t---------------")
 
         if type == "members":
             for member in self.members:
                 for key, valu in member.items():
-                    print(f"{key} = {valu}")
-                print("---------------")
+                    print(f"\t{key} = {valu}")
+                print("\t---------------")
 
 
