@@ -10,6 +10,7 @@ class Book:
             "title" : self.title,
             "author" : self.author,
             "year" : self.year,
-            "book_id" : self.book_id
+            "book_id" : self.book_id,
+            "is_available" : self.available
         }
 

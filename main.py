@@ -7,7 +7,7 @@ test = 2
 while test > 0:
     print("""
 \t------------------------------
-\t****** library managment *****
+\t****** library management *****
 \t------------------------------
     
 \t1. Add Book
@@ -36,6 +36,10 @@ while test > 0:
     elif user_input == 3:
         print("\n\tThe list of library's Books : \n")
         library_start.show_data("books")
+
+    elif user_input == 4:
+        print("\n\tThe list of Members : \n")
+        library_start.show_data("members")
 
 
     test -= 1

@@ -54,36 +54,58 @@ do you want to save this? (y/n)").lower()
                 print("\tPlease enter y/yes or n/no.")
             
     def add_member(self):
+        name = input("\tyour name : ")
         while True:
-            name = input("\tyour name : ")
+            phone_number = input("\tphone number(+989123456789) : ")
+            if phone_number.startswith("+989") \
+                and len(phone_number) == 13 \
+                and phone_number[4:].isdigit():
+                break
+            else:
+                print("\tplease enter your number in (+989123456789) format. ")
+
+        while True:
             password1 = input("\tpassword : ")
             password2 = input("\tre-enter password : ")
             if password1 == password2:
                 password = password1
                 member_id = self.id_generate("member")
-
-                new_member = Member(member_id, name, password)
-                self.members.append(new_member.to_dict())
-
-                print(f"\tmember {name} created successfully.")
-
-                self.wait_for_continue()
                 break
-
             else:
                 print("\tpassword does not match. try again.")
 
-    def show_data(self, type):
-        if type == "books":
-            for book in self.books:
-                for key, value in book.items():
-                    print(f"\t{key} = {value}")
-                print("\t---------------")
+        new_member = Member(member_id, name, password, phone_number)
+        self.members.append(new_member.to_dict())
 
-        if type == "members":
-            for member in self.members:
-                for key, value in member.items():
-                    print(f"\t{key} = {value}")
-                print("\t---------------")
+        print(
+            f"\n\tmember {name}, {phone_number} created successfully."
+            f"\nyour id is {member_id}, please remember your id."
+            )
+
+        self.wait_for_continue()
+
+    def show_data(self, type_of_data):
+        if type_of_data == "books":
+            if not self.books:
+                print("\tno book found.")
+            else:
+                for book in self.books:
+                    for key, value in book.items():
+                        print(f"\t{"-" * 15}")
+                        print(f"\t{key} = {value}")
+
+        if type_of_data == "members":
+            if not self.members:
+                print("\tno member found.")
+            else:
+                for member in self.members:
+                    print(f"\t{"-" * 15}")
+                    print(
+                        f"\tID : {member["member_id"]}"
+                        f"\n\tname : {member["name"]}"
+                        f"\n\tphone number : {member["phone_number"]}"
+                    )
+
+        print(f"\t{"-" * 15}")
 
         self.wait_for_continue()
