@@ -5,12 +5,14 @@ class Member:
         self.password_hash = password_hash
         self.borrowed_books = []
         self.phone_num = phone_num
+        self.membership_date = None
 
     def to_dict(self):
         return {
             "member_id" : self.member_id,
             "name" : self.name,
             "phone_number" : self.phone_num,
+            "membership_date" : self.membership_date,
             "password" : self.password_hash
         }
 
