@@ -7,15 +7,23 @@ class Library:
         "title": "Python",
         "author": "Jadi",
         "year": 2025,
-        "book_id": 50501001
+        "book_id": 50501001,
+        "is_borrowed" : False,
+        "borrowed_by" : None,
+        "borrowed_date" : None
     },
     {
         "title": "Clean Code",
         "author": "Robert Martin",
         "year": 2008,
-        "book_id": 50501002
+        "book_id": 50501002,
+        "is_borrowed" : False,
+        "borrowed_by" : None,
+        "borrowed_date" : None
     }]
+
         self.members = []
+
         self.next_book_id = 1000
         self.next_member_id = 1000
 
@@ -90,7 +98,7 @@ do you want to save this? (y/n)").lower()
                 print("\tno book found.")
             else:
                 for book in self.books:
-                    for key, value in book.items():
+                    for key, value in list(book.items())[:5]:
                         print(f"\t{"-" * 15}")
                         print(f"\t{key} = {value}")
 
@@ -99,13 +107,32 @@ do you want to save this? (y/n)").lower()
                 print("\tno member found.")
             else:
                 for member in self.members:
-                    print(f"\t{"-" * 15}")
-                    print(
-                        f"\tID : {member["member_id"]}"
-                        f"\n\tname : {member["name"]}"
-                        f"\n\tphone number : {member["phone_number"]}"
-                    )
+                    for key, value in list(member.items())[:4]:    
+                        print(f"\t{"-" * 15}")
+                        print(f"\t{key} = {value}")
 
         print(f"\t{"-" * 15}")
 
         self.wait_for_continue()
+
+    def search_books(self, category, search_term):
+        search_term = search_term.lower()
+        search_result = []
+
+        for book in self.books:
+            if category == "title":
+                if search_term in book["title"].lower():
+                    search_result.append(book)
+            
+            elif category == "author":
+                if search_term in book["author"].lower():
+                    search_result.append(book)
+            
+            elif category == "all":
+                if search_term in book["title"].lower() or \
+                    search_term in book["author"].lower():
+                        search_result.append(book)
+
+        return search_result
+
+
