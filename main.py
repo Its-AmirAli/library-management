@@ -2,9 +2,7 @@ from library import Library
 
 library_start = Library()
 
-test = 2
-
-while test > 0:
+while True:
     print("""
 \t------------------------------
 \t****** library management *****
@@ -14,6 +12,7 @@ while test > 0:
 \t2. Add Member
 \t3. Show Books
 \t4. Show Members
+\t5. Search Book
 \t99. Exit
 """)
     while True:
@@ -41,5 +40,9 @@ while test > 0:
         print("\n\tThe list of Members : \n")
         library_start.show_data("members")
 
+    elif user_input == 5:
+        pass
 
-    test -= 1
+    elif user_input == 99:
+        break
+
