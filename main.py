@@ -6,26 +6,26 @@ def wait_for_continue():
     input(f"\n{8*" "}Press Enter to return to menu.")
 
 while True:
-    print("""
-f"{8*" "}------------------------------
-f"{8*" "}****** library management *****
-f"{8*" "}------------------------------
+    print(f"""
+{8*" "}------------------------------
+{8*" "}****** library management *****
+{8*" "}------------------------------
     
-f"{8*" "}1. Add Book
-f"{8*" "}2. Add Member
-f"{8*" "}3. Show Books
-f"{8*" "}4. Show Members
-f"{8*" "}5. Search Book
-f"{8*" "}99. Exit
+{8*" "}1. Add Book
+{8*" "}2. Add Member
+{8*" "}3. Show Books
+{8*" "}4. Show Members
+{8*" "}5. Search Book
+{8*" "}99. Exit
+{8*" "}------------------------------
 """)
     while True:
         user_input = input(f"{8*" "}Select a number : ")
-	    
+
         if user_input.isdigit():
             user_input = int(user_input)
             break
-        else:
-            print(f"{8*" "}Please enter a number.")
+        print(f"{8*" "}Please enter a number.")
 
     if user_input == 1: #Add Book
         print(f"\n{8*" "}Please enter book informations.")
@@ -34,7 +34,7 @@ f"{8*" "}99. Exit
             title = input(f"{8*" "}title : ")
             author = input(f"{8*" "}author : ")
             year = input(f"{8*" "}year : ")
-        
+
             approval = input(f"{8*" "}{title} by {author} in ({year}). \
 do you want to save this? (y/n)").lower()
             if approval in ["y", "yes"]:
@@ -44,7 +44,7 @@ do you want to save this? (y/n)").lower()
 
                 break
 
-            elif approval in ["n", "no"]:
+            if approval in ["n", "no"]:
                 print(f"{8*" "}Enter boobk information again. ")
 
             else:
@@ -59,8 +59,7 @@ do you want to save this? (y/n)").lower()
                 and len(phone_number) == 13 \
                 and phone_number[4:].isdigit():
                 break
-            else:
-                print(f"{8*" "}please enter your number in (+989123456789) format. ")
+            print(f"{8*" "}please enter your number in (+989123456789) format. ")
 
         while True:
             password1 = input(f"{8*" "}password : ")
@@ -68,9 +67,8 @@ do you want to save this? (y/n)").lower()
             if password1 == password2:
                 password = password1
                 break
-            else:
-                print(f"{8*" "}password does not match. try again.")
-                
+            print(f"{8*" "}password does not match. try again.")
+
         library_start.add_member(name, password, phone_number)
         print(f"\n\tmember {name}, {phone_number} created successfully.")
 
@@ -82,8 +80,7 @@ do you want to save this? (y/n)").lower()
             print(f"{8*" "}no book found.")
         else:
             for option_num, book in enumerate(books, start=1):
-                print(f"{8*" "}{"-" * 15}"
-                      f"{6*" "}{option_num}.")
+                print(f"{6*" "}{option_num}.")
 
                 print(
                     f"{8*" "}Title : {book["title"]}\n"
@@ -93,6 +90,8 @@ do you want to save this? (y/n)").lower()
                 )
                 print(f"{8*" "}{"-" * 15}")
 
+            wait_for_continue()
+
     elif user_input == 4: #Show Members
         print(f"\n{8*" "}The list of Members : \n")
         members = library_start.get_data("members")
@@ -101,8 +100,7 @@ do you want to save this? (y/n)").lower()
             print(f"{8*" "}no member found.")
         else:
             for option_num, member in enumerate(members, start=1):
-                print(f"{8*" "}{"-" * 15}"
-                      f"{6*" "}{option_num}.")
+                print(f"{6*" "}{option_num}.")
 
                 print(
                     f"{8*" "}Member ID : {member["member_id"]}\n"
@@ -112,9 +110,20 @@ do you want to save this? (y/n)").lower()
                 )
                 print(f"{8*" "}{"-" * 15}")
 
+                wait_for_continue()
+
 
     elif user_input == 5: #Search Book
-        pass
+        category = input(
+                        f"\n{8*" "}1. Search by Title"
+                        f"\n{8*" "}2. Search by Author"
+                        f"\n{8*" "}2. Search by Book ID"
+                        f"\n{8*" "}3. Search All"
+                        f"\n{8*" "}Please select a category to search for books : "
+                        )
+        category = int(category) if category.isdigit()\
+            else print(f"\n{8*" "}Please Enter a Number")
+        
 
     elif user_input == 99: #Exit
         break

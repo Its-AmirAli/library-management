@@ -46,11 +46,12 @@ class Library:
         if item_type == "member":
             self.next_member_id += 1
             return int("2020" + str(self.next_member_id))
+        return None
 
     def add_book(self, title, author, year):
-                book_id = self.id_generate("book")
-                new_book = Book(title, author, year, book_id)
-                self.books.append(new_book.to_dict())
+        book_id = self.id_generate("book")
+        new_book = Book(title, author, year, book_id)
+        self.books.append(new_book.to_dict())
 
     def add_member(self, name, password, phone_number):
         member_id = self.id_generate("member")
@@ -62,7 +63,8 @@ class Library:
             return self.books
 
         if type_of_data == "members":
-             return self.members
+            return self.members
+        return None
 
     def search_books(self, category, search_term):
         search_term = search_term.lower()
@@ -72,14 +74,18 @@ class Library:
             if category == "title":
                 if search_term in book["title"].lower():
                     search_result.append(book)
-            
+
             elif category == "author":
                 if search_term in book["author"].lower():
                     search_result.append(book)
-            
+
+            elif category == "book id":
+                if search_term == book["book_id"]:
+                    search_result.append(book)
+
             elif category == "all":
                 if search_term in book["title"].lower() or \
                     search_term in book["author"].lower():
-                        search_result.append(book)
+                    search_result.append(book)
 
         return search_result
