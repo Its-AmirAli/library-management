@@ -79,7 +79,7 @@ class Library:
                 if search_term in book["author"].lower():
                     search_result.append(book)
 
-            elif category == "book id":
+            elif category == "book_id":
                 if search_term == book["book_id"]:
                     search_result.append(book)
 

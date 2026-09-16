@@ -77,7 +77,7 @@ do you want to save this? (y/n)").lower()
         books = library_start.get_data("books")
 
         if not books:
-            print(f"{8*" "}no book found.")
+            print(f"{8*" "}No book found.")
         else:
             for option_num, book in enumerate(books, start=1):
                 print(f"{6*" "}{option_num}.")
@@ -114,17 +114,53 @@ do you want to save this? (y/n)").lower()
 
 
     elif user_input == 5: #Search Book
-        category = input(
-                        f"\n{8*" "}1. Search by Title"
-                        f"\n{8*" "}2. Search by Author"
-                        f"\n{8*" "}2. Search by Book ID"
-                        f"\n{8*" "}3. Search All"
-                        f"\n{8*" "}Please select a category to search for books : "
-                        )
-        category = int(category) if category.isdigit()\
-            else print(f"\n{8*" "}Please Enter a Number")
+        print(
+            f"\n{8*" "}1. Search by Title"
+            f"\n{8*" "}2. Search by Author"
+            f"\n{8*" "}3. Search by Book ID"
+            f"\n{8*" "}4. Search All")
+        while True:    
+            category = input(f"\n{8*" "}Please select a category to search for books : ")
+
+            if category.isdigit():
+                category = int(category) 
+                break
+            print(f"\n{8*" "}Please Enter a Number")
         
+        search_term = input(f"\n{8*" "}What you want? ") 
+        print(f"{8*" "}{"-" * 15}")
+
+        search_result = []
+
+        if category == 1:
+            search_result = library_start.search_books("title", search_term)
+        
+        elif category == 2:
+            search_result = library_start.search_books("aothur", search_term)
+
+        elif category == 3:
+            search_result = library_start.search_books("book_id", search_term)
+
+        elif category == 4:
+            search_result = library_start.search_books("all", search_term)
+
+        if not search_result:
+            print(f"{8*" "}No book found.")
+            print(f"{8*" "}{"-" * 15}")
+
+        else:
+            for option_num, book in enumerate(search_result, start=1):
+                print(f"{6*" "}{option_num}.")
+
+                print(
+                    f"{8*" "}Title : {book["title"]}\n"
+                    f"{8*" "}Aothur : {book["author"]}\n"
+                    f"{8*" "}Year : {book["year"]}\n"
+                    f"{8*" "}Is Borrowed : {"Yes" if book["is_borrowed"] else "No"}"
+                )
+                print(f"{8*" "}{"-" * 15}")
+
+        wait_for_continue()
 
     elif user_input == 99: #Exit
         break
-
