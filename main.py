@@ -114,27 +114,29 @@ do you want to save this? (y/n)").lower()
 
 
     elif user_input == 5: #Search Book
-        print(
+        while True:
+            print(
             f"\n{8*" "}1. Search by Title"
             f"\n{8*" "}2. Search by Author"
             f"\n{8*" "}3. Search by Book ID"
             f"\n{8*" "}4. Search All")
-        while True:    
             category = input(f"\n{8*" "}Please select a category to search for books : ")
 
             if category.isdigit():
-                category = int(category) 
+                category = int(category)
                 break
+            print(f"{8*" "}{"-" * 15}")
             print(f"\n{8*" "}Please Enter a Number")
-        
-        search_term = input(f"\n{8*" "}What you want? ") 
+            print(f"{8*" "}{"-" * 15}")
+
+        search_term = input(f"\n{8*" "}What you want? ")
         print(f"{8*" "}{"-" * 15}")
 
         search_result = []
 
         if category == 1:
             search_result = library_start.search_books("title", search_term)
-        
+
         elif category == 2:
             search_result = library_start.search_books("aothur", search_term)
 

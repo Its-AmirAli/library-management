@@ -1,3 +1,4 @@
+
 class Book:
     def __init__(self, title, author, year, book_id):
         self.title = title
@@ -18,4 +19,3 @@ class Book:
             "borrowed_by" : self.borrowed_by,
             "borrowed_date" : self.borrowed_date
         }
-

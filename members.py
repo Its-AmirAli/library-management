@@ -1,3 +1,4 @@
+
 class Member:
     def __init__(self, member_id, name, password_hash, phone_num):
         self.member_id = member_id
@@ -15,4 +16,3 @@ class Member:
             "membership_date" : self.membership_date,
             "password" : self.password_hash
         }
-

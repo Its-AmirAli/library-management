@@ -80,7 +80,7 @@ class Library:
                     search_result.append(book)
 
             elif category == "book_id":
-                if search_term == book["book_id"]:
+                if search_term == str(book["book_id"]):
                     search_result.append(book)
 
             elif category == "all":
